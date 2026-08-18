@@ -2,12 +2,11 @@
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 
-
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 
 import { useI18n } from "../../lib/i18n";
-import { setAccessToken } from "../../redux/slices/authSlice";
+import { setAccessToken, setUserInfo } from "../../redux/slices/authSlice";
 import { useUserLoginMutation } from "../../redux/api/authApi";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthLayout } from "../../components/authPage/AuthLayout";
@@ -39,6 +38,7 @@ export function SignIn() {
       const res = await userLogin(payload).unwrap();
 
       dispatch(setAccessToken(res?.data?.accessToken));
+      dispatch(setUserInfo(res?.data?.user));
 
       toast.success(res?.message, {
         id: toastId,
@@ -65,7 +65,7 @@ export function SignIn() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder={t("auth.fullNamePh")}
+            placeholder={t("auth.emailPh")}
             className="h-12 w-full rounded-lg border border-input bg-white! px-4 text-sm outline-none focus:border-primary "
           />
         </Field>
@@ -83,7 +83,7 @@ export function SignIn() {
             to="/waitlist"
             className="text-sm font-medium text-primary hover:underline"
           >
-            {t("auth.forgot")}
+            {t("auth.forgetPassword")}
           </Link>
         </div>
         <button
@@ -95,7 +95,7 @@ export function SignIn() {
         <p className="text-center text-sm text-muted-foreground">
           {t("auth.noAccount")}{" "}
           <Link
-            to="/sign-up"
+            to="/choose-account"
             className="font-medium text-primary hover:underline"
           >
             {t("auth.registerLink")}

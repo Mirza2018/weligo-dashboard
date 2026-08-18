@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import { AdminDashboardLayout } from "../layouts/AdminDashboardPage";
 import { SignIn } from "../pages/auth/sign-in";
@@ -17,6 +17,10 @@ import { AdminTransactionsPage } from "../pages/DashboardPage/admin/Transactions
 
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="/dashboard/admin/overview" />,
+  },
 
   {
     path: "/dashboard/admin",
@@ -73,9 +77,13 @@ const router = createBrowserRouter([
     path: "/sign-in",
     element: <SignIn />,
   },
+  // {
+  //   path: "/sign-up",
+  //   element: <SignUp />,
+  // },
   {
-    path: "/sign-up",
-    element: <SignUp />,
+    path: "*",
+    element: <Navigate to="/dashboard/admin/overview" />,
   },
 ]);
 export default router;

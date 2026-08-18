@@ -13,7 +13,7 @@ export function StatCard({
     <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">
       <div className="flex items-start justify-between">
         <p className="text-sm text-muted-foreground">{label}</p>
-        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
+        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary text-primary">
           <Icon className="h-3.5 w-3.5" />
         </span>
       </div>

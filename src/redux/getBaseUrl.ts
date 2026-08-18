@@ -3,7 +3,7 @@ export const getBaseUrl = () => {
 };
 
 export const getImageUrl = (key: string | undefined): string | null => {
-  if (!key) return null;
+  if (!key) return import.meta.env.VITE_PUBLIC_IMAGE_URL;
   return import.meta.env.VITE_PUBLIC_IMAGE_URL + key;
 };
 

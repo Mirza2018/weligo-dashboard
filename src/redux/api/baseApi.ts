@@ -10,36 +10,14 @@ const baseQuery = fetchBaseQuery({
   prepareHeaders: (headers, { getState }) => {
     const state = getState() as RootState;
     const token = state.auth.accessToken;
-    const signUpToken = state.auth.signUpToken;
-    // const resendSignUpToken = state.auth.resendSignUpToken;
-    // const forgotPassToken = state.auth.forgotPasswordToken;
-    // const resendForgotPasswordToken = state.auth.resendForgotPasswordToken;
-    const resetPasswordToken = state.auth.resetPasswordToken;
 
     if (token) {
-      headers.set("authorization", `Bearer ${token}`);
-    }
-    // if (forgotPassToken) {
-    //   headers.set("signUpToken", `signUpToken ${forgotPassToken}`);
-    // }
-    // if (resendForgotPasswordToken) {
-    //   headers.set("signUpToken", `signUpToken ${resendForgotPasswordToken}`);
-    // }
-    if (signUpToken) {
-      headers.set("authorization", `Bearer ${signUpToken}`);
-    }
-    // if (resendSignUpToken) {
-    //   headers.set("authorization", `Bearer ${resendSignUpToken}`);
-    // }
-
-    if (resetPasswordToken) {
-      headers.set("Forget-password", `Forget-password ${resetPasswordToken}`);
+      headers.set("token", `${token}`);
     }
 
     return headers;
   },
 });
-
 
 const baseQueryWithAutoLogout = async (
   args: any,

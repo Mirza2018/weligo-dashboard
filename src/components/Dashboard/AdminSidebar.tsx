@@ -25,6 +25,7 @@ import {
 
 import { useI18n } from "../../lib/i18n";
 import { UserAvatar } from "../common/UserAvatar";
+import AllImages from "../../assets/AllImages";
 
 type NavItem = { labelKey: string; to: string; icon: LucideIcon };
 
@@ -96,14 +97,9 @@ export function AdminSidebar() {
       <SidebarHeader>
         <Link
           to="/dashboard/admin/overview"
-          className="flex items-center gap-2 px-2 py-2"
+          className="h-16"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <span className="font-serif text-lg font-semibold">W</span>
-          </div>
-          <span className="font-serif text-xl font-semibold text-foreground group-data-[collapsible=icon]:hidden">
-            {t("admin.appName")}
-          </span>
+         <img src={AllImages.logo} alt="" className="h-12.5" />
         </Link>
       </SidebarHeader>
       <SidebarContent className="px-2">

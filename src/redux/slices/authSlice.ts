@@ -5,9 +5,14 @@ interface UserInfo {
   role: string;
   // Add other user fields as needed
 }
-
+interface PendingRegistration {
+  token: string | null; // createUserToken from /users/create
+  email: string | null;
+}
 const initialState = {
   accessToken: null as string | null,
+  refreshToken: null as string | null,
+  pendingRegistration: null as PendingRegistration | null,
   signUpToken: null as string | null,
   resendSignUpToken: null as string | null,
   forgotPasswordToken: null as string | null,
@@ -25,6 +30,26 @@ const authSlice = createSlice({
     },
     setSignUpToken: (state, action: PayloadAction<string>) => {
       state.signUpToken = action.payload;
+    },
+    setPendingRegistration: (
+      state,
+      action: PayloadAction<{ token: string; email: string }>,
+    ) => {
+      state.pendingRegistration = action.payload;
+    },
+    clearPendingRegistration: (state) => {
+      state.pendingRegistration = null;
+    },
+
+    setRefreshToken: (state, action: PayloadAction<string | null>) => {
+      state.refreshToken = action.payload;
+    },
+
+    logout: (state) => {
+      state.accessToken = null;
+      state.refreshToken = null;
+      state.userInfo = null;
+      state.pendingRegistration = null;
     },
     setResendSignUpToken: (state, action: PayloadAction<string>) => {
       state.resendSignUpToken = action.payload;
@@ -72,19 +97,24 @@ const authSlice = createSlice({
 
 export const {
   setAccessToken,
+  clearAuth,
+  setUserInfo,
+  clearAccessToken,
   setSignUpToken,
   setForgotPasswordToken,
   setResendForgotPasswordToken,
   setResendSignUpToken,
   setResetPasswordToken,
   clearResetPasswordToken,
-  clearAccessToken,
   clearSignUpToken,
   clearResendSignUpToken,
   clearResendForgotPasswordToken,
   clearForgotPasswordToken,
-  clearAuth,
-  setUserInfo,
+  setPendingRegistration,
+  clearPendingRegistration,
+  setRefreshToken,
+  logout,
+
 } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -714,7 +714,8 @@ function resolve(obj: any, path: string): any {
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("de");
+  // const [lang, setLang] = useState<Lang>("de"); //chnage this to go to german language
+  const [lang, setLang] = useState<Lang>("en");
   const t = useCallback(
     (path: string) => {
       const node = resolve(dict, path);

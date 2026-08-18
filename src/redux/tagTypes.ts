@@ -1,6 +1,7 @@
-// src/redux/tagTypes.ts (rename from tagTypes.js to .ts for TypeScript)
 export const tagTypes = {
   user: "User",
+  provider: "Provider",
+  family: "Family",
 };
 
-export const tagTypesList = [tagTypes.user];
+export const tagTypesList = [tagTypes.user, tagTypes.provider,tagTypes.family];

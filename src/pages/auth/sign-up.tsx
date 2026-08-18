@@ -12,14 +12,14 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthLayout } from "../../components/authPage/AuthLayout";
 import { useI18n } from "../../lib/i18n";
-import { useUserRegisterMutation } from "../../redux/api/authApi";
+// import { useUserRegisterMutation } from "../../redux/api/authApi";
 import { setAccessToken } from "../../redux/slices/authSlice";
 import { PasswordStrength } from "../../components/authPage/PasswordStrength";
 
 
 export function SignUp() {
   const { t } = useI18n();
-  const [userRegister, { isLoading }] = useUserRegisterMutation();
+  // const [userRegister, { isLoading }] = useUserRegisterMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -47,14 +47,14 @@ export function SignUp() {
     };
 
     try {
-      const res = await userRegister(payload).unwrap();
+      // const res = await userRegister(payload).unwrap();
 
-      dispatch(setAccessToken(res?.data?.accessToken));
+      // dispatch(setAccessToken(res?.data?.accessToken));
 
-      toast.success(res?.message || "OTP sent to your email", {
-        id: toastId,
-        duration: 2000,
-      });
+      // toast.success(res?.message || "OTP sent to your email", {
+      //   id: toastId,
+      //   duration: 2000,
+      // });
 
       navigate("/");
     } catch (error: any) {

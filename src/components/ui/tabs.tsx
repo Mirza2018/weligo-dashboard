@@ -44,7 +44,7 @@ function TabsList({
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.List> &
   VariantProps<typeof tabsListVariants>) {
-  const orientation = props.orientation ?? "horizontal";
+  const orientation = "horizontal";
   return (
     <TabsPrimitive.List
       data-slot="tabs-list"
