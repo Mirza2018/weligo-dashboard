@@ -238,40 +238,335 @@ export const dict = {
     supportSub: { de: "Wir sind für dich da", en: "We're here for you" },
   },
   auth: {
-    welcomeA: { de: "Willkommen zurück.", en: "Welcome back." },
-    welcomeB: { de: "Schön, dich zu sehen.", en: "Good to see you." },
+    chooseA: {
+      de: "Willkommen bei Weligo.",
+      en: "Welcome to Weligo.",
+    },
+    chooseB: {
+      de: "Als wen möchtest du beitreten?",
+      en: "Who are you joining as?",
+    },
+    chooseDesc: {
+      de: "Wähle deine Rolle, um zu beginnen.",
+      en: "Choose your role to get started.",
+    },
+    chooseOptionA: {
+      de: "Als Familie beitreten",
+      en: "Join as a Family",
+    },
+    chooseOptionADesc: {
+      de: "Finde verifizierte Betreuungskräfte für deine Familie",
+      en: "Find verified caregivers for your family",
+    },
+    chooseOptionB: {
+      de: "Als Anbieter beitreten",
+      en: "Join as a Provider",
+    },
+    chooseOptionBDesc: {
+      de: "Biete Betreuungsdienste an und verdiene flexibel",
+      en: "Offer care services and earn flexibly",
+    },
+    alreday: {
+      de: "Bereits ein Konto?",
+      en: "Already have an account?",
+    },
+    login: {
+      de: "Anmelden",
+      en: "Log in",
+    },
+    continue: {
+      de: "Weiter",
+      en: "Continue",
+    },
+    // sign in
+    welcomeA: {
+      de: "Willkommen zurück.",
+      en: "Welcome back.",
+    },
+    welcomeB: {
+      de: "Schön, dich wiederzusehen.",
+      en: "Good to see you.",
+    },
     welcomeDesc: {
-      de: "Logge dich ein, um auf dein Konto zuzugreifen und deinen Wartelisten-Status zu verfolgen.",
-      en: "Log in to access your account, track your waitlist status, and be ready when we launch.",
+      de: "Willkommen zurück. Melde dich an, um auf dein Konto zuzugreifen.",
+      en: "Welcome back. Log in to access your account",
     },
-    joinA: { de: "Tritt der Warteliste bei.", en: "Join the waitlist." },
-    joinB: { de: "Sei früh dabei.", en: "Get in early." },
-    joinDesc: {
-      de: "Wir starten bald. Registriere dich jetzt für frühen Zugriff, Launch-Rabatte und bevorzugtes Matching.",
-      en: "We're launching soon. Register now and get early access, launch discounts and priority matching before the public launch.",
+    email: {
+      de: "E-Mail-Adresse",
+      en: "Email Address",
     },
-    fullName: { de: "Vollständiger Name", en: "Full Name" },
-    fullNamePh: { de: "Gib deinen Namen ein", en: "Enter your full name" },
-    email: { de: "E-Mail-Adresse", en: "Email Address" },
+    emailPh: {
+      de: "Gib deine E-Mail-Adresse ein",
+      en: "Enter your email",
+    },
     emailHint: {
       de: "Wir senden deine Bestätigung hierhin.",
       en: "We'll send your waitlist confirmation here.",
     },
-    password: { de: "Passwort", en: "Password" },
-    passwordPh: { de: "Erstelle ein Passwort", en: "Create a password" },
-    city: { de: "Stadt", en: "City" },
-    cityPh: { de: "Wähle deine Stadt", en: "Select your city" },
+    password: {
+      de: "Passwort",
+      en: "Password",
+    },
+    passwordPh: {
+      de: "Erstelle ein Passwort",
+      en: "Create a password",
+    },
+    forgetPassword: {
+      de: "Passwort vergessen?",
+      en: "Forgot password?",
+    },
+    noAccount: {
+      de: "Noch nicht registriert?",
+      en: "Didn't register?",
+    },
+    registerLink: {
+      de: "Jetzt registrieren",
+      en: "Register now",
+    },
+
+    signUpA: {
+      de: "",
+      en: "Create your account.",
+    },
+    signUpB: {
+      de: "",
+      en: "It's free.",
+    },
+    signUpDesc: {
+      de: "",
+      en: "Join thousands of Swiss families already using Weligo.",
+    },
+    firstName: { de: "", en: "First Name" },
+    firstNamePh: { de: "", en: "Enter your first name" },
+    lastName: { de: "", en: "Last Name" },
+    lastNamePh: { de: "", en: "Enter your last name" },
+    city: { de: "", en: "City" },
+    cityPh: { de: "", en: "Select your city" },
+    postCode: { de: "", en: "Postal Code" },
+    postCodePh: { de: "", en: "Type your postal code" },
+    address: { de: "", en: "Address" },
+    addressPh: { de: "", en: "Enter your address" },
+    hasAccount: { de: "Bereits registriert?", en: "Already registered?" },
+    agree: {
+      de: "",
+      en: "I agree to Weligo's",
+    },
+    terms: {
+      de: "",
+      en: "Terms of Service",
+    },
+    privacy: {
+      de: "",
+      en: "Privacy Policy",
+    },
+    and: {
+      de: "",
+      en: "and",
+    },
+    /////Verify code
+    verifyA: { de: "", en: "Submit your code" },
+    verifyB: {
+      de: "",
+      en: "Enter the code we have sent to",
+    },
+    didNotCode: {
+      de: "",
+      en: "Didn't get the code? ",
+    },
+    resend: {
+      de: "",
+      en: "Resend it",
+    },
+    verifyCode: {
+      de: "",
+      en: "Verify code",
+    },
+    ////
+    ////more-info
+    moreInfoA: {
+      de: "",
+      en: "A little about you.",
+    },
+    moreInfoB: {
+      de: "",
+      en: "This helps us personalise your experience.",
+    },
+    phone: {
+      de: "",
+      en: "Phone number",
+    },
+    phonePh: {
+      de: "",
+      en: "Enter your phone number",
+    },
+    phoneDetails: {
+      de: "",
+      en: "For booking confirmations only.",
+    },
+    howHearUs: {
+      de: "",
+      en: "How did you hear about us?",
+    },
+    select: {
+      de: "",
+      en: "Select",
+    },
+    back: { de: "", en: "Back" },
+
+    ///////WellCome
+    welcomePageA: {
+      de: "Du bist dabei!",
+      en: "You're in!",
+    },
+    welcomePageB: {
+      de: "Willkommen bei Weligo.",
+      en: "Welcome to Weligo.",
+    },
+    welcomePageDesc: {
+      de: "Schließe dich Tausenden von Schweizer Familien an, die Weligo bereits nutzen.",
+      en: "Join thousands of Swiss families already using Weligo.",
+    },
+    welcomePage1: {
+      de: "Anbieter entdecken",
+      en: "Browse providers",
+    },
+    welcomePage1Desc: {
+      de: "Suche, filtere und finde die passende Betreuungskraft",
+      en: "Search, filter and find your match",
+    },
+    welcomePage2: {
+      de: "Buchungsanfrage senden",
+      en: "Send a booking request",
+    },
+    welcomePage2Desc: {
+      de: "Schreibe Nachrichten und buche in wenigen Minuten",
+      en: "Message and book in minutes",
+    },
+    welcomePage3: {
+      de: "Sicher bezahlen",
+      en: "Pay securely",
+    },
+    welcomePage3Desc: {
+      de: "TWINT oder Karte – du bist geschützt",
+      en: "TWINT or card — you're protected",
+    },
+    welcomePage4: {
+      de: "Verfügbarkeit festlegen",
+      en: "Set your availability",
+    },
+    welcomePage4Desc: {
+      de: "Zeige Familien, wann du für Buchungen verfügbar bist",
+      en: "Let families know when you're open for bookings",
+    },
+    welcomePage5: {
+      de: "Auf Anfragen antworten",
+      en: "Respond to requests",
+    },
+    welcomePage5Desc: {
+      de: "Schreibe Nachrichten und bestätige Buchungen in wenigen Minuten",
+      en: "Message and confirm bookings in minutes",
+    },
+    welcomePage6: {
+      de: "Sicher bezahlt werden",
+      en: "Get paid securely",
+    },
+    welcomePage6Desc: {
+      de: "TWINT oder Karte - schnelle und geschützte Auszahlungen",
+      en: "TWINT or card — fast, protected payouts",
+    },
+    welcomePageCta: {
+      de: "Jetzt entdecken",
+      en: "Start browsing",
+    },
+
+    ////serice-selection
+    serviceSelectionA: {
+      de: "Was bietest du an?",
+      en: "What do you offer?",
+    },
+    serviceSelectionDesc: {
+      de: "Wähle deine Dienstleistungen und lege deinen Preis fest.",
+      en: "Select your services and set your rate.",
+    },
+    serviceProvide: {
+      de: "Angebotene Dienstleistungen",
+      en: "Services you provide",
+    },
+    hourlyCHF: {
+      de: "Dein Stundenlohn (CHF)",
+      en: "Your hourly rate (CHF)",
+    },
+    experience: {
+      de: "Erfahrung",
+      en: "Experience",
+    },
+    language: {
+      de: "Sprache",
+      en: "Language",
+    },
+
+    // ///// add-certificates
+    certificateA: {
+      de: "Füge deine Zertifikate hinzu.",
+      en: "Add your certificates.",
+    },
+    certificateDesc: {
+      de: "Lade Nachweise über deine Ausbildung oder Lizenzen hoch - verifizierte Profile werden schneller gebucht.",
+      en: "Upload proof of training or licenses — verified profiles get booked faster.",
+    },
+    certificateCta: {
+      de: "Zertifikat hinzufügen",
+      en: "Add certificate",
+    },
+    certificateConfirmation: {
+      de: "Ich bestätige, dass diese Dokumente gültig, meine eigenen und auf dem neuesten Stand sind.",
+      en: "I confirm these documents are valid, mine, and up to date.",
+    },
+
+    ///// About
+    aboutA: {
+      de: "Erzähle Familien etwas über dich.",
+      en: "Tell families about you.",
+    },
+    aboutDesc: {
+      de: "Ein aussagekräftiges Profil erhält 3-mal mehr Buchungen.",
+      en: "A strong profile gets 3x more bookings.",
+    },
+    dob: {
+      de: "Geburtsdatum",
+      en: "Date of birth",
+    },
+    about1: {
+      de: "Nichtraucher",
+      en: "Non-smoker",
+    },
+    about2: {
+      de: "Führerschein",
+      en: "Driver's license",
+    },
+    about3: {
+      de: "Eigenes Fahrzeug",
+      en: "Own vehicle",
+    },
+    about4: {
+      de: "Hat Kinder",
+      en: "Has Children",
+    },
+    about5: {
+      de: "Haustiere sind kein Problem",
+      en: "Comfortable with pets",
+    },
+
+    ////
+
+    fullName: { de: "Vollständiger Name", en: "Full Name" },
+    fullNamePh: { de: "Gib deinen Namen ein", en: "Enter your full name" },
+
     role: { de: "Ich möchte beitreten als…", en: "I want to join in as a..." },
     family: { de: "Familie", en: "Family" },
     provider: { de: "Dienstleister", en: "Provider" },
-    login: { de: "Anmelden", en: "Log In" },
     forgot: { de: "Passwort vergessen", en: "Forgot password" },
-    noAccount: { de: "Noch nicht registriert?", en: "Didn't register?" },
-    registerLink: {
-      de: "Wartelisten-Konto erstellen",
-      en: "Register your waitlist account",
-    },
-    hasAccount: { de: "Bereits registriert?", en: "Already registered?" },
+
     loginLink: {
       de: "In dein Wartelisten-Konto einloggen",
       en: "Log in to your waitlist account",

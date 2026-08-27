@@ -15,7 +15,7 @@ export function AppHeader({ title }: { title: string }) {
     `${userInfo?.firstName ?? ""} ${userInfo?.lastName ?? ""}`.trim() ||
     "User";
 
-  console.log(userInfo);
+  // console.log(userInfo);
   
   const avatarSrc =
     userInfo?.profileImage && userInfo.profileImage.trim() !== ""

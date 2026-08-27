@@ -37,6 +37,15 @@ export function SignIn() {
     try {
       const res = await userLogin(payload).unwrap();
 
+
+      if (res?.data?.user?.role != "admin") {
+        toast.error("You are not an admin", {
+          id: toastId,
+          duration: 3000,
+        });
+        return;
+      }
+
       dispatch(setAccessToken(res?.data?.accessToken));
       dispatch(setUserInfo(res?.data?.user));
 
@@ -78,21 +87,21 @@ export function SignIn() {
             className="h-12 w-full rounded-lg border border-input bg-background px-4 text-sm outline-none focus:border-primary bg-white!"
           />
         </Field>
-        <div className="flex justify-end">
+        {/* <div className="flex justify-end">
           <Link
             to="/waitlist"
             className="text-sm font-medium text-primary hover:underline"
           >
             {t("auth.forgetPassword")}
           </Link>
-        </div>
+        </div> */}
         <button
           type="submit"
           className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.01]"
         >
           {t("auth.login")} <ArrowRight className="h-4 w-4" />
         </button>
-        <p className="text-center text-sm text-muted-foreground">
+        {/* <p className="text-center text-sm text-muted-foreground">
           {t("auth.noAccount")}{" "}
           <Link
             to="/choose-account"
@@ -100,7 +109,7 @@ export function SignIn() {
           >
             {t("auth.registerLink")}
           </Link>
-        </p>
+        </p> */}
       </form>
     </AuthLayout>
   );
