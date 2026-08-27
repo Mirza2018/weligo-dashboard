@@ -4,7 +4,6 @@ export type Lang = "de" | "en";
 
 // All copy lives here. German is primary, English secondary.
 export const dict = {
-
   common: {
     joinWaitlist: { de: "Warteliste beitreten", en: "Join the waitlist" },
     backHome: { de: "Zurück zur Startseite", en: "Back to home" },
@@ -640,6 +639,7 @@ export const dict = {
       sendReply: { de: "Antwort senden", en: "Send reply" },
       replySent: { de: "Antwort gesendet", en: "Reply sent" },
       open: { de: "Öffnen", en: "Open" },
+      resolved: { de: "Gelöst", en: "Resolved" },
       inProgress: { de: "In Bearbeitung", en: "In Progress" },
       close: { de: "Schließen", en: "Close" },
       markedAs: { de: "Ticket markiert als", en: "Ticket marked" },

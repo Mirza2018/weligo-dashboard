@@ -16,6 +16,11 @@ const styles: Record<string, string> = {
   Payment: "bg-violet-50 text-violet-700 border-violet-200",
   Refund: "bg-rose-50 text-rose-700 border-rose-200",
   Payout: "bg-sky-50 text-sky-700 border-sky-200",
+  Authorized: "bg-sky-50 text-sky-700 border-sky-200",
+  Processing: "bg-amber-50 text-amber-700 border-amber-200",
+  Captured: "bg-emerald-50 text-emerald-700 border-emerald-200",
+  Voided: "bg-zinc-100 text-zinc-700 border-zinc-200",
+  Refunded: "bg-orange-50 text-orange-700 border-orange-200",
 };
 
 export function Pill({ value, className }: { value: string; className?: string }) {

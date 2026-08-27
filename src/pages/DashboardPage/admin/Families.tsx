@@ -53,8 +53,6 @@ type SelectedFamily = {
   phone: string;
 };
 
-const PAGE_LIMIT = 10;
-
 function formatDate(value?: string | null) {
   if (!value) return "-";
   const d = new Date(value);
@@ -87,7 +85,7 @@ export function AdminFamiliesPage() {
     isError,
   } = useGetAllFammiliesQuery({
     page,
-    limit: PAGE_LIMIT,
+    limit: 10,
     ...(status !== "all" ? { status } : {}),
     ...(debouncedQuery.trim() ? { searchTerm: debouncedQuery.trim() } : {}),
   });
@@ -125,7 +123,7 @@ export function AdminFamiliesPage() {
           <SelectContent>
             <SelectItem value="all">{t("admin.common.allStatus")}</SelectItem>
             <SelectItem value="active">{t("admin.pill.Active")}</SelectItem>
-            <SelectItem value="block">{t("admin.pill.Suspended")}</SelectItem>
+            <SelectItem value="blocked">{t("admin.pill.Suspended")}</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -185,7 +183,7 @@ export function AdminFamiliesPage() {
                 families.map((f) => {
                   const id = f?._id ?? "";
                   const isBlocked =
-                    f?.status === "block" || f?.status === "inactive";
+                    f?.status === "blocked" || f?.status === "inactive";
                   const selected: SelectedFamily = {
                     id,
                     name: f?.fullName ?? "-",
@@ -223,7 +221,7 @@ export function AdminFamiliesPage() {
                         {f?.totalSpent != null ? formatCHF(f.totalSpent) : "-"}
                       </TableCell>
                       <TableCell>
-                        <Pill value={isBlocked ? "Suspended" : "Active"} />
+                        <Pill value={isBlocked ? "Blocked" : "Active"} />
                       </TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>

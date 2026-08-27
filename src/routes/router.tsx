@@ -2,7 +2,6 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import { AdminDashboardLayout } from "../layouts/AdminDashboardPage";
 import { SignIn } from "../pages/auth/sign-in";
-import { SignUp } from "../pages/auth/sign-up";
 import { AdminBookingsPage } from "../pages/DashboardPage/admin/Bookings";
 import { AdminCategoriesPage } from "../pages/DashboardPage/admin/Categories";
 import { AdminEarningsPage } from "../pages/DashboardPage/admin/Earnings";

@@ -72,7 +72,7 @@ export type Category = {
   active: boolean;
 };
 
-export type SupportStatus = "Open" | "In Progress" | "Closed";
+export type SupportStatus = "Resolved" | "In Progress" | "Closed";
 export type SupportTicket = {
   id: string;
   number: string;
@@ -174,7 +174,7 @@ export const initialCategories: Category[] = serviceList.map((s, i) => ({
 }));
 
 const supportCategories = ["Payment Issue", "Account", "Booking", "Other"];
-const supportStatuses: SupportStatus[] = ["Open", "In Progress", "Closed"];
+const supportStatuses: SupportStatus[] = ["Resolved", "In Progress", "Closed"];
 export const supportTickets: SupportTicket[] = Array.from({ length: 12 }).map((_, i) => ({
   id: `tkt-${i + 1}`,
   number: `TKT-${1200 + i}`,

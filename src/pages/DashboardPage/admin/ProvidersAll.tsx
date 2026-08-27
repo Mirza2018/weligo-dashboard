@@ -56,8 +56,6 @@ type SelectedProvider = {
   earnings: number;
 };
 
-const PAGE_LIMIT = 10;
-
 export function AdminProvidersAllPage() {
   const { t } = useI18n();
   const [query, setQuery] = useState("");
@@ -79,7 +77,7 @@ export function AdminProvidersAllPage() {
     isError,
   } = useGetAllProvidersQuery({
     page,
-    limit: PAGE_LIMIT,
+    limit: 10,
     ...(status !== "all" ? { status } : {}),
     ...(debouncedQuery.trim() ? { searchTerm: debouncedQuery.trim() } : {}),
   });
@@ -117,7 +115,7 @@ export function AdminProvidersAllPage() {
           <SelectContent>
             <SelectItem value="all">{t("admin.common.allStatus")}</SelectItem>
             <SelectItem value="active">{t("admin.pill.Active")}</SelectItem>
-            <SelectItem value="block">{t("admin.pill.Suspended")}</SelectItem>
+            <SelectItem value="blocked">{t("admin.pill.Suspended")}</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -178,7 +176,7 @@ export function AdminProvidersAllPage() {
                 providers.map((p) => {
                   const id = p?._id ?? "";
                   const isBlocked =
-                    p?.status === "block" || p?.status === "inactive";
+                    p?.status === "blocked" || p?.status === "inactive";
                   const selected: SelectedProvider = {
                     id,
                     name: p?.fullName ?? "-",
