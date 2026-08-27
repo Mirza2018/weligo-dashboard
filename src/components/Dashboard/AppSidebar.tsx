@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutGrid,
   CalendarCheck,
@@ -9,6 +9,7 @@ import {
   LifeBuoy,
   Settings,
   type LucideIcon,
+  LogOut,
 } from "lucide-react";
 import {
   Sidebar,
@@ -23,6 +24,10 @@ import {
 import { currentUser } from "../../assets/data/user";
 import { useI18n } from "../../lib/i18n";
 import { UserAvatar } from "../common/UserAvatar";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "@/redux/store";
+import { getImageUrl } from "@/redux/getBaseUrl";
+import { clearAuth } from "@/redux/slices/authSlice";
 
 type NavItem = { key: string; to: string; icon: LucideIcon };
 
@@ -41,6 +46,25 @@ export function AppSidebar() {
   const { t } = useI18n();
   const location = useLocation();
   const pathname = location.pathname;
+
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userInfo = useSelector((state: RootState) => state.auth.userInfo);
+  const fullName =
+    userInfo?.fullName ||
+    `${userInfo?.firstName ?? ""} ${userInfo?.lastName ?? ""}`.trim() ||
+    "User";
+
+  const avatarSrc =
+    userInfo?.profileImage && userInfo.profileImage.trim() !== ""
+      ? getImageUrl(userInfo.profileImage)
+      : undefined;
+
+  const handleLogout = () => {
+    dispatch(clearAuth());
+    navigate("/");
+  };
 
   return (
     <Sidebar collapsible="icon">
@@ -82,18 +106,23 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter>
         <div className="flex items-center gap-3 rounded-xl bg-card p-2">
-          <UserAvatar
-            name={`${currentUser.firstName} ${currentUser.lastName}`}
-            size={36}
-          />
+          <UserAvatar name={fullName} src={avatarSrc} size={36} />
           <div className="min-w-0 flex-1 group-data-[collapsible=icon]:hidden">
             <p className="truncate text-sm font-medium text-foreground">
-              {currentUser.firstName} {currentUser.lastName}
+              {fullName}
             </p>
             <p className="truncate text-xs text-muted-foreground">
-              {currentUser.email}
+              {userInfo?.email}
             </p>
           </div>
+          <button
+            type="button"
+            onClick={handleLogout}
+            aria-label="Log out"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition hover:bg-muted hover:text-foreground group-data-[collapsible=icon]:hidden"
+          >
+            <LogOut className="h-4 w-4" />
+          </button>
         </div>
       </SidebarFooter>
     </Sidebar>

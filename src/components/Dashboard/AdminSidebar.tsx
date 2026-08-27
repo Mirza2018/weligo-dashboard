@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutGrid,
   Users,
@@ -12,6 +12,7 @@ import {
   Wallet,
   Settings,
   type LucideIcon,
+  LogOut,
 } from "lucide-react";
 import {
   Sidebar,
@@ -26,6 +27,10 @@ import {
 import { useI18n } from "../../lib/i18n";
 import { UserAvatar } from "../common/UserAvatar";
 import AllImages from "../../assets/AllImages";
+import { clearAuth } from "@/redux/slices/authSlice";
+import { getImageUrl } from "@/redux/getBaseUrl";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "@/redux/store";
 
 type NavItem = { labelKey: string; to: string; icon: LucideIcon };
 
@@ -86,20 +91,35 @@ const items: NavItem[] = [
     icon: Settings,
   },
 ];
-
+ 
 export function AdminSidebar() {
   const { t } = useI18n();
   const location = useLocation();
   const pathname = location.pathname;
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userInfo = useSelector((state: RootState) => state.auth.userInfo);
+  const fullName =
+    userInfo?.fullName ||
+    `${userInfo?.firstName ?? ""} ${userInfo?.lastName ?? ""}`.trim() ||
+    "User";
+
+  const avatarSrc =
+    userInfo?.profileImage && userInfo.profileImage.trim() !== ""
+      ? getImageUrl(userInfo.profileImage)
+      : undefined;
+
+  const handleLogout = () => {
+    dispatch(clearAuth());
+    navigate("/sign-in");
+  };
  
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <Link
-          to="/dashboard/admin/overview"
-          className="h-16"
-        >
-         <img src={AllImages.logo} alt="" className="h-12.5" />
+        <Link to="/dashboard/admin/overview" className="h-16">
+          <img src={AllImages.logo} alt="" className="h-12.5" />
         </Link>
       </SidebarHeader>
       <SidebarContent className="px-2">
@@ -128,15 +148,23 @@ export function AdminSidebar() {
       </SidebarContent>
       <SidebarFooter>
         <div className="flex items-center gap-3 rounded-xl bg-card p-2">
-          <UserAvatar name="Admin User" size={36} />
+          <UserAvatar name={fullName} src={avatarSrc} size={36} />
           <div className="min-w-0 flex-1 group-data-[collapsible=icon]:hidden">
             <p className="truncate text-sm font-medium text-foreground">
-              {t("admin.user")}
+              {fullName}
             </p>
             <p className="truncate text-xs text-muted-foreground">
-              admin@weligo.ch
+              {userInfo?.email}
             </p>
           </div>
+          <button
+            type="button"
+            onClick={handleLogout}
+            aria-label="Log out"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition hover:bg-muted hover:text-foreground group-data-[collapsible=icon]:hidden"
+          >
+            <LogOut className="h-4 w-4" />
+          </button>
         </div>
       </SidebarFooter>
     </Sidebar>
