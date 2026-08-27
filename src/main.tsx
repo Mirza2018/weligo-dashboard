@@ -33,16 +33,19 @@ import router from "./routes/router";
 import Providers from "./redux/lib/Providers";
 import { I18nProvider } from "./lib/i18n";
 import { TooltipProvider } from "./components/ui/tooltip";
+import { SocketProvider } from "./socket/SocketProvider";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Providers>
-      <TooltipProvider>
-        <Toaster richColors position="top-center" />
-        <I18nProvider>
-          <RouterProvider router={router} />
-        </I18nProvider>
-      </TooltipProvider>
+      <SocketProvider>
+        <TooltipProvider>
+          <Toaster richColors position="top-center" />
+          <I18nProvider>
+            <RouterProvider router={router} />
+          </I18nProvider>
+        </TooltipProvider>
+      </SocketProvider>
     </Providers>
   </StrictMode>,
 );

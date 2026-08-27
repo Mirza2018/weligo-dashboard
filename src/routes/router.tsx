@@ -13,6 +13,7 @@ import { AdminProvidersAllPage } from "../pages/DashboardPage/admin/ProvidersAll
 import { AdminProvidersPendingPage } from "../pages/DashboardPage/admin/ProvidersPending";
 import { AdminSupportPage } from "../pages/DashboardPage/admin/Support";
 import { AdminTransactionsPage } from "../pages/DashboardPage/admin/Transactions";
+import { MessagePage } from "@/pages/DashboardPage/admin/MessagePage";
 
 
 const router = createBrowserRouter([
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
       },
       {
         path: "messages",
-        element: <AdminMessagesPage />,
+        element: <MessagePage />,
       },
       {
         path: "earnings",
