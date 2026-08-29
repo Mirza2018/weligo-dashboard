@@ -137,11 +137,13 @@ export interface CallIceCandidatePayload {
   candidate: RTCIceCandidateInit;
 }
 
-export interface CallEndPayload {
+// Shared shape for every "just a callId" event: call:accepted, call:rejected,
+// call:cancelled, call:ended, call:missed, call:peer-disconnected.
+export interface CallIdPayload {
   callId: string;
 }
 
-export interface CallInitiateAck {
+export interface CallAckResponse {
   success: boolean;
   callId?: string;
   message?: string;
