@@ -58,9 +58,9 @@ export function AdminProfilePage() {
           <TabsTrigger value="password">
             {t("admin.profile.tabPassword")}
           </TabsTrigger>
-          <TabsTrigger value="commission">
+          {/* <TabsTrigger value="commission">
             {t("admin.profile.tabCommission")}
-          </TabsTrigger>
+          </TabsTrigger> */}
         </TabsList>
         <TabsContent value="profile">
           <ProfileForm />
