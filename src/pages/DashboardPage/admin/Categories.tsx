@@ -152,7 +152,7 @@ export function AdminCategoriesPage() {
     setForm({
       name: c?.name ?? "",
       description: c?.description ?? "",
-      order: c?.order != null ? String(c.order) : "",
+      order: c?.order != null ? String(c?.order) : "",
       status: (c?.status as CategoryStatus) ?? "active",
     });
     setIconFile(null);
@@ -349,7 +349,7 @@ export function AdminCategoriesPage() {
                     <TableCell>
                       {c?.icon ? (
                         <img
-                          src={getImageUrl(c.icon)}
+                          src={getImageUrl(c?.icon)}
                           alt=""
                           className="h-8 w-8 rounded object-cover"
                         />
@@ -358,11 +358,9 @@ export function AdminCategoriesPage() {
                       )}
                     </TableCell>
                     <TableCell>
-                      {console.log(getImageUrl(c.image))}
-
                       {c?.image ? (
                         <img
-                          src={getImageUrl(c.image)}
+                          src={getImageUrl(c?.image)}
                           alt=""
                           className="h-10 w-14 rounded object-cover"
                         />

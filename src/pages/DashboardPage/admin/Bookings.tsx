@@ -96,7 +96,7 @@ export function AdminBookingsPage() {
 
   const bookings = res?.data ?? [];
   const meta = res?.meta;
-  const showSkeleton = isLoading || (isFetching && bookings.length === 0);
+  const showSkeleton = isLoading || (isFetching && bookings?.length === 0);
 
   return (
     <div className="flex flex-col gap-5">
@@ -168,7 +168,7 @@ export function AdminBookingsPage() {
                     </div>
                   </TableCell>
                 </TableRow>
-              ) : bookings.length === 0 ? (
+              ) : bookings?.length === 0 ? (
                 <TableRow>
                   <TableCell
                     colSpan={7}

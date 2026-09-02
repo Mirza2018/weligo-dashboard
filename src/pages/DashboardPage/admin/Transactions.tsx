@@ -125,13 +125,13 @@ export function AdminTransactionsPage() {
 
   const rows = useMemo(() => {
     return (data?.data ?? []).map((tx) => ({
-      id: tx.transactionId || tx._id,
-      type: tx.booking ? tx.booking.bookingReference : "Direct Payment",
-      userName: tx.payer.fullName,
-      amount: tx.amount,
-      method: methodToUi(tx.paymentMethod),
-      status: capitalize(tx.paymentStatus), // "authorized" -> "Authorized", matches Pill's t("admin.pill.Authorized") lookup
-      date: new Date(tx.createdAt).toLocaleDateString(),
+      id: tx?.transactionId || tx?._id,
+      type: tx?.booking ? tx?.booking?.bookingReference : "Direct Payment",
+      userName: tx?.payer?.fullName,
+      amount: tx?.amount,
+      method: methodToUi(tx?.paymentMethod),
+      status: capitalize(tx?.paymentStatus), // "authorized" -> "Authorized", matches Pill's t("admin.pill.Authorized") lookup
+      date: new Date(tx?.createdAt).toLocaleDateString(),
     }));
   }, [data]);
 
@@ -230,27 +230,27 @@ export function AdminTransactionsPage() {
               </TableRow>
             ) : (
               rows.map((tx) => (
-                <TableRow key={tx.id} className="hover:bg-muted-bg">
-                  <TableCell className="font-medium">{tx.id}</TableCell>
+                <TableRow key={tx?.id} className="hover:bg-muted-bg">
+                  <TableCell className="font-medium">{tx?.id}</TableCell>
                   <TableCell>
-                    <Pill value={tx.type} />
+                    <Pill value={tx?.type} />
                   </TableCell>
                   <TableCell>
                     <div className="text-sm">
-                      <p className="font-medium">{tx.userName}</p>
+                      <p className="font-medium">{tx?.userName}</p>
                       <p className="text-xs text-muted-foreground">
                         {t("admin.common.family")}
                       </p>
                     </div>
                   </TableCell>
                   <TableCell className="text-sm font-medium">
-                    {formatCHF(tx.amount)}
+                    {formatCHF(tx?.amount)}
                   </TableCell>
-                  <TableCell className="text-sm">{tx.method}</TableCell>
+                  <TableCell className="text-sm">{tx?.method}</TableCell>
                   <TableCell>
-                    <Pill value={tx.status} />
+                    <Pill value={tx?.status} />
                   </TableCell>
-                  <TableCell className="text-sm">{tx.date}</TableCell>
+                  <TableCell className="text-sm">{tx?.date}</TableCell>
                 </TableRow>
               ))
             )}
