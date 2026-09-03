@@ -1,7 +1,6 @@
 import { tagTypes } from "../tagTypes";
 import { baseApi } from "./baseApi";
 
-
 interface Response {
   data: any | void;
 }
@@ -40,11 +39,49 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.user],
     }),
+    forgotPassword: build.mutation<Response, any>({
+      query: (body) => ({
+        url: `/auth/forgot-password-otpByEmail`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
+    forgotPasswordOTP: build.mutation<Response, any>({
+      query: (body) => ({
+        url: `/auth/forgot-password-otp-match`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
+    forgotPasswordReset: build.mutation<Response, any>({
+      query: (body) => ({
+        url: `/auth/forgot-password-reset`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
+    userVerifyOTPResend: build.mutation<Response, any>({
+      query: (body) => ({
+        url: `/otp/resend-otp`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
     //End
   }),
 });
 
-export const { useUserLoginMutation, useMyProfileQuery, useUpdateProfileMutation, useUpdatePasswordMutation } = authApi;
-
-
-
+export const {
+  useUserLoginMutation,
+  useMyProfileQuery,
+  useUpdateProfileMutation,
+  useUpdatePasswordMutation,
+  useForgotPasswordMutation,
+  useForgotPasswordOTPMutation,
+  useForgotPasswordResetMutation,
+  useUserVerifyOTPResendMutation,
+} = authApi;

@@ -50,6 +50,7 @@ type StatusFilter = "all" | "active" | "block";
 type SelectedProvider = {
   id: string;
   name: string;
+  profileImage: string; 
   email: string;
   phone: string;
   completed: number;
@@ -180,6 +181,7 @@ export function AdminProvidersAllPage() {
                   const selected: SelectedProvider = {
                     id,
                     name: p?.fullName ?? "-",
+                    profileImage: p?.profileImage ?? "-",
                     email: p?.email ?? "-",
                     phone: p?.phone ?? "-",
                     completed: p?.totalReview ?? 0,
@@ -316,6 +318,7 @@ export function AdminProvidersAllPage() {
             phone: viewing.phone,
             completed: viewing.completed,
             earnings: viewing.earnings,
+            profileImage: viewing.profileImage,
           }
         }
       />

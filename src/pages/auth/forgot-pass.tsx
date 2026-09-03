@@ -5,14 +5,18 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 
+import { useI18n } from "../../lib/i18n";
+import {
+  clearAuth,
+  setAccessToken,
+  setUserInfo,
+} from "../../redux/slices/authSlice";
+import { useForgotPasswordMutation } from "../../redux/api/authApi";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthLayout } from "../../components/authPage/AuthLayout";
-import { useI18n } from "../../lib/i18n";
-import { useUserLoginMutation } from "../../redux/api/authApi";
-import { setAccessToken, setUserInfo } from "../../redux/slices/authSlice";
 
-export function SignIn() {
-  const [userLogin] = useUserLoginMutation();
+export function ForgotPassword() {
+  const [forgetPassword] = useForgotPasswordMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,39 +27,31 @@ export function SignIn() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const toastId = toast.loading("Please wait...");
+    dispatch(clearAuth());
 
-    if (!email || !password) {
+    if (!email) {
       toast.error("Please fill in all fields.", { id: toastId });
       return;
     }
 
     const payload = {
       email,
-      password,
     };
 
     try {
-      const res = await userLogin(payload).unwrap();
+      const res = await forgetPassword(payload).unwrap();
 
-      if (res?.data?.user?.role != "admin") {
-        toast.error("You are not an admin", {
-          id: toastId,
-          duration: 3000,
-        });
-        return;
-      }
-
-      dispatch(setAccessToken(res?.data?.accessToken));
-      dispatch(setUserInfo(res?.data?.user));
+      dispatch(setAccessToken(res?.data?.forgetToken));
+      // dispatch(setUserInfo(res?.data?.user));
 
       toast.success(res?.message, {
         id: toastId,
         duration: 2000,
       });
 
-      navigate("/");
+      navigate("/forgot-code");
     } catch (error: any) {
-      toast.error(error?.data?.message || "Login  failed", {
+      toast.error(error?.data?.message || "Password recovary failed", {
         id: toastId,
         duration: 3000,
       });
@@ -63,9 +59,9 @@ export function SignIn() {
   };
   return (
     <AuthLayout
-      title={t("auth.welcomeA")}
-      italic={t("auth.welcomeB")}
-      description={t("auth.welcomeDesc")}
+      title={t("auth.forgotA")}
+      italic={t("auth.forgotB")}
+      description={t("auth.forgotC")}
     >
       <form className="space-y-5" onSubmit={handleSubmit}>
         <Field label={t("auth.email")}>
@@ -77,38 +73,21 @@ export function SignIn() {
             className="h-12 w-full rounded-lg border border-input bg-white! px-4 text-sm outline-none focus:border-primary "
           />
         </Field>
-        <Field label={t("auth.password")}>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder={t("auth.newPasswordPh")}
-            className="h-12 w-full rounded-lg border border-input bg-background px-4 text-sm outline-none focus:border-primary bg-white!"
-          />
-        </Field>
+
         <div className="flex justify-end">
           <Link
-            to="/forgot-password"
+            to="/sign-in"
             className="text-sm font-medium text-primary hover:underline"
           >
-            {t("auth.forgetPassword")}
+            {t("auth.login")}
           </Link>
         </div>
         <button
           type="submit"
           className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.01]"
         >
-          {t("auth.login")} <ArrowRight className="h-4 w-4" />
+          {t("auth.continue")} <ArrowRight className="h-4 w-4" />
         </button>
-        {/* <p className="text-center text-sm text-muted-foreground">
-          {t("auth.noAccount")}{" "}
-          <Link
-            to="/choose-account"
-            className="font-medium text-primary hover:underline"
-          >
-            {t("auth.registerLink")}
-          </Link>
-        </p> */}
       </form>
     </AuthLayout>
   );

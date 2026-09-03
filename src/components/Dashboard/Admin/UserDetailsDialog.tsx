@@ -7,6 +7,7 @@ import {
 import { useI18n } from "../../../lib/i18n";
 import { UserAvatar } from "../../common/UserAvatar";
 import { formatCHF } from "../../../lib/format";
+import { getImageUrl } from "@/redux/getBaseUrl";
 
 
 export type UserDetails = {
@@ -16,6 +17,7 @@ export type UserDetails = {
   completed: number;
   earnings: number;
   earningsLabel?: string;
+  profileImage?: string;
 };
 
 export function UserDetailsDialog({
@@ -36,14 +38,23 @@ export function UserDetailsDialog({
         </DialogHeader>
         {user && (
           <div className="flex flex-col items-center gap-4 py-2">
-            <UserAvatar name={user.name} size={88} />
+            <UserAvatar
+              src={getImageUrl(user.profileImage) ?? undefined}
+              name={user.name}
+              size={88}
+            />
             <div className="w-full space-y-2 text-sm">
               <Row label={t("admin.common.name")} value={user.name} />
               <Row label={t("admin.common.email")} value={user.email} />
               <Row label={t("admin.common.phone")} value={user.phone} />
-              <Row label={t("admin.dialog.completedJobs")} value={String(user.completed)} />
               <Row
-                label={user.earningsLabel ?? t("admin.dialog.accumulatedEarnings")}
+                label={t("admin.dialog.completedJobs")}
+                value={String(user.completed)}
+              />
+              <Row
+                label={
+                  user.earningsLabel ?? t("admin.dialog.accumulatedEarnings")
+                }
                 value={formatCHF(user.earnings)}
               />
             </div>

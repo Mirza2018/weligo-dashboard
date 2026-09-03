@@ -66,7 +66,7 @@ export const websiteApi = baseApi.injectEndpoints({
 
     getAllProviders: build.query<Response, void>({
       query: (params) => ({
-        url: `/users/all-providers`,
+        url: `/users/all-providers?approvalStatus=approved`,
         method: "GET",
         params,
       }),
@@ -89,9 +89,10 @@ export const websiteApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.provider],
     }),
     rejectProvider: build.mutation({
-      query: (id) => ({
-        url: `/users/reject-provider/${id}`,
+      query: (body) => ({
+        url: `/users/reject-provider/${body.id}`,
         method: "PATCH",
+        body: body.data,
       }),
       invalidatesTags: [tagTypes.provider],
     }),
@@ -225,5 +226,5 @@ export const {
 
   useGetAllEarningsQuery,
   ///
-  useGetAllTransactionsQuery
+  useGetAllTransactionsQuery,
 } = websiteApi;
